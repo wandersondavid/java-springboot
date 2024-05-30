@@ -24,25 +24,24 @@ services:
     volumes:
       - rabbitmq_data:/var/lib/rabbitmq
 
-  backend:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: app-backend
-    env_file: ./.env
-    volumes:
-      - ./src:/app/src
-      - ./pom.xml:/app/pom.xml
-    ports:
-      - "8080:8080"
-    environment:
-      SPRING_DATASOURCE_URL: ${POSTGRES_URL}
-      SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
-      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
-    depends_on:
-      - postgres
-      - rabbitmq
+#  backend:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile
+#    container_name: app-backend
+#    env_file: ./.env
+#    volumes:
+#      - ./src:/app/src
+#      - ./pom.xml:/app/pom.xml
+#    ports:
+#      - "8080:8080"
+#    environment:
+#      SPRING_DATASOURCE_URL: ${POSTGRES_URL}
+#      SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
+#      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
+#    depends_on:
+#      - postgres
+#      - rabbitmq
 volumes:
   postgres_data:
   rabbitmq_data:
-  backend_data:
