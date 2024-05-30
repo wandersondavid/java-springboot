@@ -14,4 +14,7 @@ COPY --from=build /app/target/*.jar /app/app.jar
 
 WORKDIR /app
 
+COPY src /app/src
+COPY pom.xml /app
+
 ENTRYPOINT ["java", "-jar", "app.jar"]
