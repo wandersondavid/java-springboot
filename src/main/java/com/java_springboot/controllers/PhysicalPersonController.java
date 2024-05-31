@@ -2,6 +2,7 @@ package com.java_springboot.controllers;
 
 import com.java_springboot.domain.person.PhysicalPerson;
 import com.java_springboot.dtos.PhysicalPersonDTO;
+import com.java_springboot.dtos.ResponsePhysicalPersonDTO;
 import com.java_springboot.services.PhysicalPersonService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +25,7 @@ public class PhysicalPersonController {
     }
 
     @GetMapping
-    public ResponseEntity<List<PhysicalPerson>> getAllPhysicalPerson() {
+    public ResponseEntity<List<ResponsePhysicalPersonDTO>> getAllPhysicalPerson() {
         return ResponseEntity.ok(physicalPersonService.getAllPhysicalPerson());
     }
 }
