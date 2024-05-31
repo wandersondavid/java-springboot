@@ -1,20 +1,23 @@
 package com.java_springboot.services;
 
 import com.java_springboot.domain.person.PhysicalPerson;
+import com.java_springboot.dtos.PhysicalPersonDTO;
 import com.java_springboot.repositories.PhysicalPersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class PhysicalPersonService {
     @Autowired
     private PhysicalPersonRepository repository;
 
-    public PhysicalPersonService(PhysicalPersonRepository repository) {
-        this.repository = repository;
-    }
+    @Autowired
+    private  AddressService addressService;
 
-    public void validateCpf(String cpf) {
+
+    private void validateCpf(String cpf) {
         if (cpf.length() != 11) {
             throw new IllegalArgumentException("CPF must have 11 digits");
         }
@@ -24,10 +27,15 @@ public class PhysicalPersonService {
         }
     }
 
-    public void save(PhysicalPerson physicalPerson) {
-        validateCpf(physicalPerson.getCpf());
-        repository.save(physicalPerson);
+    public PhysicalPerson createPhysicalPerson(PhysicalPersonDTO data) {
+        validateCpf(data.cpf());
+        var person = new PhysicalPerson(data);
+        repository.save(person);
+
+        return person;
     }
 
-
+    public List<PhysicalPerson> getAllPhysicalPerson() {
+        return repository.findAll();
+    }
 }

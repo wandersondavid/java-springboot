@@ -2,16 +2,14 @@ package com.java_springboot.domain.address;
 
 import com.java_springboot.domain.person.PhysicalPerson;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Entity(name="address")
 @Table(name="address")
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 @EqualsAndHashCode(of="id")
 public class Address {
         @Id
@@ -28,6 +26,4 @@ public class Address {
         @JoinColumn(name = "physical_person_id")
         private PhysicalPerson physical_person;
 
-        public Address() {
-        }
 }

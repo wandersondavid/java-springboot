@@ -1,11 +1,9 @@
 package com.java_springboot.domain.person;
 
 import com.java_springboot.domain.address.Address;
+import com.java_springboot.dtos.PhysicalPersonDTO;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
@@ -14,6 +12,7 @@ import java.util.List;
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 @EqualsAndHashCode(of="id")
 public class PhysicalPerson {
 
@@ -27,7 +26,10 @@ public class PhysicalPerson {
     @OneToMany(mappedBy = "physical_person", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Address> addresses;
 
-    public PhysicalPerson() {
-
+    public PhysicalPerson(PhysicalPersonDTO data) {
+        this.name = data.name();
+        this.cpf = data.cpf();
+        this.phone = data.phone();
     }
+
 }
