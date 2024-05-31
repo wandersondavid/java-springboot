@@ -1,10 +1,13 @@
 package com.java_springboot.domain.person;
 
+import com.java_springboot.domain.address.Address;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
 
 @Entity(name="physical_person")
 @Table(name="physical_person")
@@ -21,5 +24,6 @@ public class PhysicalPerson {
     @Column(unique = true)
     private String cpf;
     private String phone;
-
+    @OneToMany(mappedBy = "physical_person", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Address> addresses;
 }
