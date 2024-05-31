@@ -13,10 +13,6 @@ public class PhysicalPersonService {
     @Autowired
     private PhysicalPersonRepository repository;
 
-    @Autowired
-    private  AddressService addressService;
-
-
     private void validateCpf(String cpf) {
         if (cpf.length() != 11) {
             throw new IllegalArgumentException("CPF must have 11 digits");
