@@ -1,10 +1,7 @@
 package com.java_springboot.services;
 
 import com.java_springboot.domain.person.PhysicalPerson;
-import com.java_springboot.dtos.AddressDTO;
-import com.java_springboot.dtos.PhysicalPersonDTO;
-import com.java_springboot.dtos.ResponseAddressDTO;
-import com.java_springboot.dtos.ResponsePhysicalPersonDTO;
+import com.java_springboot.dtos.*;
 import com.java_springboot.repositories.PhysicalPersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -76,5 +73,17 @@ public class PhysicalPersonService {
                                 address.getZip_code(),
                                 person.getId()))
                         .toList());
+    }
+
+    public void deletePhysicalPersonById(String id) {
+        repository.deleteById(id);
+    }
+
+    public PhysicalPerson updatePhysicalPerson(String id, UpadatePhysicalPersonDTO data) {
+        var person = repository.findById(id).orElseThrow();
+        person.update(data);
+        repository.save(person);
+
+        return person;
     }
 }

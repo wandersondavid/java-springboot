@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.java_springboot.domain.address.Address;
 import com.java_springboot.dtos.PhysicalPersonDTO;
+import com.java_springboot.dtos.UpadatePhysicalPersonDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -37,4 +38,10 @@ public class PhysicalPerson {
         this.addresses = data.addresses().stream().map(Address::new).toList();
     }
 
+    public void update(UpadatePhysicalPersonDTO data) {
+        this.id = data.id();
+        this.name = data.name();
+        this.cpf = data.cpf();
+        this.phone = data.phone();
+    }
 }

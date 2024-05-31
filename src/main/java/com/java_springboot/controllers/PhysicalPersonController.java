@@ -3,6 +3,7 @@ package com.java_springboot.controllers;
 import com.java_springboot.domain.person.PhysicalPerson;
 import com.java_springboot.dtos.PhysicalPersonDTO;
 import com.java_springboot.dtos.ResponsePhysicalPersonDTO;
+import com.java_springboot.dtos.UpadatePhysicalPersonDTO;
 import com.java_springboot.services.PhysicalPersonService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,8 +21,10 @@ public class PhysicalPersonController {
 
     @PostMapping
     public ResponseEntity<PhysicalPerson> createPhysicalPerson(@RequestBody PhysicalPersonDTO data) {
-
-        return ResponseEntity.ok(physicalPersonService.createPhysicalPerson(data));
+        physicalPersonService.createPhysicalPerson(data);
+        return ResponseEntity.ok(
+                new PhysicalPerson(data)
+        );
     }
 
     @GetMapping
@@ -32,5 +35,16 @@ public class PhysicalPersonController {
     @GetMapping("/{id}")
     public ResponseEntity<ResponsePhysicalPersonDTO> getPhysicalPersonById(@PathVariable String id) {
         return ResponseEntity.ok(physicalPersonService.getPhysicalPersonById(id));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletePhysicalPersonById(@PathVariable String id) {
+        physicalPersonService.deletePhysicalPersonById(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<PhysicalPerson> updatePhysicalPerson(@PathVariable String id, @RequestBody UpadatePhysicalPersonDTO data) {
+        return ResponseEntity.ok(physicalPersonService.updatePhysicalPerson(id, data));
     }
 }
