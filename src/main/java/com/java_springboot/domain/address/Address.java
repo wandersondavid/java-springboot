@@ -27,4 +27,7 @@ public class Address {
         @ManyToOne
         @JoinColumn(name = "physical_person_id")
         private PhysicalPerson physical_person;
+
+        public Address() {
+        }
 }

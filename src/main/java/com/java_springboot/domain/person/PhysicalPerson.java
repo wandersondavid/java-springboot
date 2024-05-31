@@ -26,4 +26,8 @@ public class PhysicalPerson {
     private String phone;
     @OneToMany(mappedBy = "physical_person", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Address> addresses;
+
+    public PhysicalPerson() {
+
+    }
 }

@@ -1,5 +1,6 @@
 package com.java_springboot.services;
 
+import com.java_springboot.domain.person.PhysicalPerson;
 import com.java_springboot.repositories.PhysicalPersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,11 @@ public class PhysicalPersonService {
         if(repository.findByCpf(cpf).isPresent()) {
             throw new IllegalArgumentException("CPF already exists");
         }
+    }
+
+    public void save(PhysicalPerson physicalPerson) {
+        validateCpf(physicalPerson.getCpf());
+        repository.save(physicalPerson);
     }
 
 
