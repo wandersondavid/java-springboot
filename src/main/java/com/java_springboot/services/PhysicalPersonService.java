@@ -56,4 +56,25 @@ public class PhysicalPersonService {
                                 .toList()))
                 .toList();
     }
+
+    public ResponsePhysicalPersonDTO getPhysicalPersonById(String id) {
+        var person = repository.findById(id).orElseThrow();
+        return new ResponsePhysicalPersonDTO(
+                person.getId(),
+                person.getName(),
+                person.getCpf(),
+                person.getPhone(),
+                person.getAddresses().stream().
+                        map(address ->
+                        new ResponseAddressDTO(
+                                address.getId(),
+                                address.getNumber(),
+                                address.getComplement(),
+                                address.getNeighborhood(),
+                                address.getCity(),
+                                address.getState(),
+                                address.getZip_code(),
+                                person.getId()))
+                        .toList());
+    }
 }

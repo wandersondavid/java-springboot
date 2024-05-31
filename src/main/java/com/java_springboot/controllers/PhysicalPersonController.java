@@ -28,4 +28,9 @@ public class PhysicalPersonController {
     public ResponseEntity<List<ResponsePhysicalPersonDTO>> getAllPhysicalPerson() {
         return ResponseEntity.ok(physicalPersonService.getAllPhysicalPerson());
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ResponsePhysicalPersonDTO> getPhysicalPersonById(@PathVariable String id) {
+        return ResponseEntity.ok(physicalPersonService.getPhysicalPersonById(id));
+    }
 }
