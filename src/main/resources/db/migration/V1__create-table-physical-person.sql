@@ -13,7 +13,7 @@ CREATE TABLE "address" (
     "city" VARCHAR(255) NOT NULL,
     "state" VARCHAR(2) NOT NULL,
     "zip_code" VARCHAR(8) NOT NULL,
-    "user_id" VARCHAR(36) NOT NULL
+    "physical_person_id" VARCHAR(36) NOT NULL
 );
 
-ALTER  TABLE "address" ADD FOREIGN KEY ("user_id") REFERENCES "physical_person" ("id");
+ALTER  TABLE "address" ADD FOREIGN KEY ("physical_person_id") REFERENCES "physical_person" ("id");
