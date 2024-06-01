@@ -1,14 +1,11 @@
 package com.java_springboot.domain.person;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.java_springboot.domain.address.Address;
 import com.java_springboot.dtos.PhysicalPersonDTO;
 import com.java_springboot.dtos.UpadatePhysicalPersonDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity(name="physical_person")
