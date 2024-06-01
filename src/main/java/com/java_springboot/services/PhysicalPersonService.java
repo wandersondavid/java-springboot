@@ -86,4 +86,8 @@ public class PhysicalPersonService {
 
         return person;
     }
+
+    public void requestReport() {
+        System.out.println("Requesting report");
+    }
 }

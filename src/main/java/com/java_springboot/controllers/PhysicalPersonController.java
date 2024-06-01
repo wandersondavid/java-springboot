@@ -22,9 +22,13 @@ public class PhysicalPersonController {
     @PostMapping
     public ResponseEntity<PhysicalPerson> createPhysicalPerson(@RequestBody PhysicalPersonDTO data) {
         physicalPersonService.createPhysicalPerson(data);
-        return ResponseEntity.ok(
-                new PhysicalPerson(data)
-        );
+        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/report")
+    public ResponseEntity<Void> requestReport() {
+        physicalPersonService.requestReport();
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping
@@ -47,4 +51,6 @@ public class PhysicalPersonController {
     public ResponseEntity<PhysicalPerson> updatePhysicalPerson(@PathVariable String id, @RequestBody UpadatePhysicalPersonDTO data) {
         return ResponseEntity.ok(physicalPersonService.updatePhysicalPerson(id, data));
     }
+
+
 }
