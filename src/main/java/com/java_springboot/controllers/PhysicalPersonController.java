@@ -49,7 +49,7 @@ public class PhysicalPersonController {
 
     @PatchMapping("/{id}")
     public ResponseEntity<PhysicalPerson> updatePhysicalPerson(@PathVariable String id, @RequestBody UpadatePhysicalPersonDTO data) {
-        return ResponseEntity.ok(physicalPersonService.updatePhysicalPerson(id, data));
+        return ResponseEntity.ok().build();
     }
 
 
