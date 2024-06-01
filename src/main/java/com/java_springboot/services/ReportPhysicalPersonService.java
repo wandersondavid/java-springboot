@@ -15,9 +15,9 @@ public class ReportPhysicalPersonService {
     @Autowired
     private ReportPhysicalPersonRepository repository;
 
+
     public void requestReportPerson(ReportPhysicalPersonDTO data) {
         var report = new ReportPhysicalPerson(data);
-
         repository.save(report);
         requestReportPerson.requestReport();
     }

@@ -22,6 +22,7 @@ public class ReportPhysicalPerson {
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
     private String status;
+    private String url;
 
     @CreatedDate
     @Column(name = "created_at", nullable = false, updatable = false)
