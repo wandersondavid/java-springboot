@@ -1,5 +1,6 @@
 package com.java_springboot.services;
 
+import com.java_springboot.consumers.RequestReportPersonConsumer;
 import com.java_springboot.domain.person.PhysicalPerson;
 import com.java_springboot.dtos.*;
 import com.java_springboot.repositories.PhysicalPersonRepository;
@@ -12,6 +13,8 @@ import java.util.List;
 public class PhysicalPersonService {
     @Autowired
     private PhysicalPersonRepository repository;
+
+    @Autowired private RequestReportPersonConsumer requestReportPerson;
 
     private void validateCpf(String cpf) {
         if (cpf.length() != 11) {
@@ -87,7 +90,7 @@ public class PhysicalPersonService {
         return person;
     }
 
-    public void requestReport() {
-        System.out.println("Requesting report");
+    public void requestReportPerson() {
+        requestReportPerson.requestReport();
     }
 }
