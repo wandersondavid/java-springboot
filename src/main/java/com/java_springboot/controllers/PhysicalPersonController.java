@@ -27,7 +27,7 @@ public class PhysicalPersonController {
 
     @PostMapping("/report")
     public ResponseEntity<Void> requestReport() {
-        physicalPersonService.requestReport();
+        physicalPersonService.requestReportPerson();
         return ResponseEntity.ok().build();
     }
 
