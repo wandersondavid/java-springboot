@@ -2,6 +2,7 @@ package com.java_springboot.controllers;
 
 import com.java_springboot.domain.person.PhysicalPerson;
 import com.java_springboot.dtos.PhysicalPersonDTO;
+import com.java_springboot.dtos.ReportPhysicalPersonDTO;
 import com.java_springboot.dtos.ResponsePhysicalPersonDTO;
 import com.java_springboot.dtos.UpadatePhysicalPersonDTO;
 import com.java_springboot.services.PhysicalPersonService;
@@ -21,8 +22,8 @@ public class ReportPhysicalPersonController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> requestReport() {
-        reportPhysicalPersonService.requestReportPerson();
+    public ResponseEntity<Void> requestReport(@RequestBody ReportPhysicalPersonDTO data) {
+        reportPhysicalPersonService.requestReportPerson(data);
         return ResponseEntity.ok().build();
     }
 }
