@@ -2,8 +2,7 @@ package com.java_springboot.consumers;
 
 
 import com.java_springboot.configs.RabbitMQConfig;
-import com.java_springboot.services.PhysicalPersonService;
-import com.java_springboot.services.ReportPhysicalPersonService;
+import com.java_springboot.services.GenerateReportPhysicalPersonService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.amqp.core.Message;
@@ -22,7 +21,7 @@ public class RequestReportPersonConsumer {
     private AmqpTemplate amqpTemplate;
 
     @Autowired
-    private  ReportPhysicalPersonService reportPhysicalPersonService;
+    private GenerateReportPhysicalPersonService generateReportPhysicalPersonService;
 
     @RabbitListener(bindings = @QueueBinding(value = @Queue(RabbitMQConfig.NOME_FILA),
             exchange = @Exchange(name = RabbitMQConfig.NOME_EXCHANGE),
@@ -30,7 +29,7 @@ public class RequestReportPersonConsumer {
 
     public void consumer(Message message) {
         System.out.println("Mensagem recebida: " + new String(message.getBody()));
-        reportPhysicalPersonService.generateReportPerson();
+        generateReportPhysicalPersonService.generateReportPerson();
     }
 
     public void requestReport() {

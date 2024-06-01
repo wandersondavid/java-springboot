@@ -25,12 +25,6 @@ public class PhysicalPersonController {
         return ResponseEntity.ok().build();
     }
 
-    @PostMapping("/report")
-    public ResponseEntity<Void> requestReport() {
-        physicalPersonService.requestReportPerson();
-        return ResponseEntity.ok().build();
-    }
-
     @GetMapping
     public ResponseEntity<List<ResponsePhysicalPersonDTO>> getAllPhysicalPerson() {
         return ResponseEntity.ok(physicalPersonService.getAllPhysicalPerson());

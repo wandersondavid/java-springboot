@@ -14,8 +14,6 @@ public class PhysicalPersonService {
     @Autowired
     private PhysicalPersonRepository repository;
 
-    @Autowired private RequestReportPersonConsumer requestReportPerson;
-
     private void validateCpf(String cpf) {
         if (cpf.length() != 11) {
             throw new IllegalArgumentException("CPF must have 11 digits");
@@ -87,9 +85,5 @@ public class PhysicalPersonService {
         person.update(data);
         repository.save(person);
         return person;
-    }
-
-    public void requestReportPerson() {
-        requestReportPerson.requestReport();
     }
 }
