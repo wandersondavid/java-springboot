@@ -2,6 +2,8 @@ package com.java_springboot.consumers;
 
 
 import com.java_springboot.configs.RabbitMQConfig;
+import com.java_springboot.services.PhysicalPersonService;
+import com.java_springboot.services.ReportPhysicalPersonService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.amqp.core.Message;
@@ -19,15 +21,19 @@ public class RequestReportPersonConsumer {
     @Autowired
     private AmqpTemplate amqpTemplate;
 
+    @Autowired
+    private  ReportPhysicalPersonService reportPhysicalPersonService;
+
     @RabbitListener(bindings = @QueueBinding(value = @Queue(RabbitMQConfig.NOME_FILA),
             exchange = @Exchange(name = RabbitMQConfig.NOME_EXCHANGE),
             key = RabbitMQConfig.ROUTING_KEY))
 
     public void consumer(Message message) {
         System.out.println("Mensagem recebida: " + new String(message.getBody()));
+        reportPhysicalPersonService.generateReportPerson();
     }
 
     public void requestReport() {
-        amqpTemplate.convertAndSend(RabbitMQConfig.NOME_EXCHANGE, RabbitMQConfig.ROUTING_KEY, "Report requested");
+        amqpTemplate.convertAndSend(RabbitMQConfig.NOME_EXCHANGE, RabbitMQConfig.ROUTING_KEY, "Report requested person");
     }
 }
