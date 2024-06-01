@@ -86,7 +86,6 @@ public class PhysicalPersonService {
         var person = repository.findById(id).orElseThrow();
         person.update(data);
         repository.save(person);
-
         return person;
     }
 

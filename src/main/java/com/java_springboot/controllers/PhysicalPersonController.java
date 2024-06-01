@@ -47,10 +47,9 @@ public class PhysicalPersonController {
         return ResponseEntity.noContent().build();
     }
 
-    @PatchMapping("/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<PhysicalPerson> updatePhysicalPerson(@PathVariable String id, @RequestBody UpadatePhysicalPersonDTO data) {
+        physicalPersonService.updatePhysicalPerson(id, data);
         return ResponseEntity.ok().build();
     }
-
-
 }
