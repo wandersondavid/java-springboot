@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
+
 @Service
 public class ReportPhysicalPersonService {
     @Autowired
@@ -17,8 +19,10 @@ public class ReportPhysicalPersonService {
        try {
             List<PhysicalPerson> persons = physicalPersonRepository.findAll();
             String csvContent = generateCsv(persons);
-            saveCsvToFile(csvContent, "report.csv");
-           System.out.println("Report TEAT");
+
+           var file = new java.io.File("src/main/resources/static/"+ UUID.randomUUID().toString() + ".csv");
+           System.out.println(file.getAbsolutePath());
+           saveCsvToFile(csvContent, file.getAbsolutePath());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -50,12 +54,8 @@ public class ReportPhysicalPersonService {
         try {
             java.nio.file.Files.write(java.nio.file.Paths.get(filePath), csvContent.getBytes());
         } catch (java.io.IOException e) {
-            extracted(e);
+            e.printStackTrace();
         }
-    }
-
-    private static void extracted(IOException e) {
-        e.printStackTrace();
     }
 
 
