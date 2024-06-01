@@ -1,7 +1,11 @@
 package com.java_springboot.services;
 
+import com.java_springboot.consumers.RequestReportPersonConsumer;
 import com.java_springboot.domain.person.PhysicalPerson;
+import com.java_springboot.domain.report.person.ReportPhysicalPerson;
+import com.java_springboot.dtos.ReportPhysicalPersonDTO;
 import com.java_springboot.repositories.PhysicalPersonRepository;
+import com.java_springboot.repositories.ReportPhysicalPersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,6 +19,9 @@ public class GenerateReportPhysicalPersonService {
     @Autowired
     private PhysicalPersonRepository physicalPersonRepository;
 
+    @Autowired
+    private ReportPhysicalPersonRepository repository;
+
     @Transactional
     public void generateReportPerson() {
        try {
@@ -22,8 +29,12 @@ public class GenerateReportPhysicalPersonService {
             String csvContent = generateCsv(persons);
 
            var file = new java.io.File("src/report/"+ UUID.randomUUID().toString() + ".csv");
-           System.out.println(file.getAbsolutePath());
            saveCsvToFile(csvContent, file.getAbsolutePath());
+
+           ReportPhysicalPersonDTO reportPhysicalPersonDTO = new ReportPhysicalPersonDTO("DONE", file.getAbsolutePath());
+
+           var reportPhysicalPersonService = new ReportPhysicalPerson(reportPhysicalPersonDTO);
+           repository.save(reportPhysicalPersonService);
 
         } catch (Exception e) {
             e.printStackTrace();

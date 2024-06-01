@@ -34,5 +34,6 @@ public class ReportPhysicalPerson {
 
     public ReportPhysicalPerson(ReportPhysicalPersonDTO data) {
         this.status = data.status();
+        this.url = data.url();
     }
 }
