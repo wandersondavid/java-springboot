@@ -4,7 +4,6 @@ import com.java_springboot.domain.person.PhysicalPerson;
 import com.java_springboot.dtos.AddressDTO;
 import com.java_springboot.dtos.PhysicalPersonDTO;
 import com.java_springboot.dtos.ResponsePhysicalPersonDTO;
-import com.java_springboot.dtos.UpadatePhysicalPersonDTO;
 import com.java_springboot.repositories.PhysicalPersonRepository;
 import jakarta.persistence.EntityManager;
 import org.junit.jupiter.api.BeforeEach;
@@ -75,7 +74,6 @@ class PhysicalPersonServiceTest {
         this.physicalPersonService.findByCpf(cpf);
     }
 
-
     @Test
     @Transactional
     @Rollback
@@ -132,5 +130,5 @@ class PhysicalPersonServiceTest {
         this.physicalPersonService.createPhysicalPerson(data);
         this.physicalPersonService.deletePhysicalPersonById("2");
     }
-    
+
 }

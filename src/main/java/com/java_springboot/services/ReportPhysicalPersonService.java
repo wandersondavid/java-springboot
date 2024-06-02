@@ -21,7 +21,6 @@ public class ReportPhysicalPersonService {
     @Autowired
     private ReportPhysicalPersonRepository repository;
 
-
     public void requestReportPerson(ReportPhysicalPersonDTO data) {
         var report = new ReportPhysicalPerson(data);
         repository.save(report);
@@ -29,8 +28,6 @@ public class ReportPhysicalPersonService {
     }
 
     public List<ResponseReportPhysicalPersonDTO> getAllPhysicalPerson() {
-
-
         return repository.findAllByOrderByCreatedAtDesc().stream().map(
                 report -> new ResponseReportPhysicalPersonDTO(
                         report.getId(),
@@ -41,7 +38,6 @@ public class ReportPhysicalPersonService {
                 )
         ).toList();
     }
-
 
     public InputStream downloadReportPhysicalPerson(String id) throws FileNotFoundException {
             var report = repository.findById(id).orElseThrow();
