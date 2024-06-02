@@ -31,7 +31,7 @@ public class GenerateReportPhysicalPersonService {
            var file = new java.io.File("src/report/"+ UUID.randomUUID().toString() + ".csv");
            saveCsvToFile(csvContent, file.getAbsolutePath());
 
-           ReportPhysicalPersonDTO reportPhysicalPersonDTO = new ReportPhysicalPersonDTO("DONE", file.getAbsolutePath());
+           ReportPhysicalPersonDTO reportPhysicalPersonDTO = new ReportPhysicalPersonDTO("done", file.getAbsolutePath());
 
            var reportPhysicalPersonService = new ReportPhysicalPerson(reportPhysicalPersonDTO);
            repository.save(reportPhysicalPersonService);

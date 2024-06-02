@@ -7,6 +7,10 @@ import com.java_springboot.repositories.ReportPhysicalPersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 @Service
@@ -38,4 +42,9 @@ public class ReportPhysicalPersonService {
     }
 
 
+    public InputStream downloadReportPhysicalPerson(String id) throws FileNotFoundException {
+            var report = repository.findById(id).orElseThrow();
+            var path = report.getUrl();
+            return  new FileInputStream(path);
+    }
 }
