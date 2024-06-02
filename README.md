@@ -25,7 +25,7 @@ docker-compose down -v
 ```
 ## Docker Hub
 ```
-docker push wandersondavid/java-springboot_backend:tagname
+docker pull wandersondavid/java-springboot_backend:0.0.1
 ```
 
 ## Docs API
