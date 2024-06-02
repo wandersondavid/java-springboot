@@ -39,7 +39,7 @@ class JavaSpringbootApplicationTests {
         Optional<PhysicalPerson> physicalPerson = this.physicalPersonRepository.findByCpf(cpf);
         assertThat(physicalPerson.isPresent()).isTrue();
     }
-    
+
     @Test
     @Transactional
     @Rollback
@@ -53,7 +53,6 @@ class JavaSpringbootApplicationTests {
         assertThat(physicalPerson.isPresent()).isFalse();
     }
 
-
     @Test
     @Transactional
     @Rollback
@@ -66,6 +65,17 @@ class JavaSpringbootApplicationTests {
         assertThat(physicalPersonFound.isPresent()).isTrue();
     }
 
+    @Test
+    @Transactional
+    @Rollback
+    @DisplayName("Should find By id - Fail")
+    void findByIdFail() {
+        List<AddressDTO> addresses = List.of(new AddressDTO("123", "test", "Bairro 1", "Cidade 1", "SP", "12345678" , "12345678901"));
+        PhysicalPersonDTO  data = new PhysicalPersonDTO("12345678901", "12345678901", "64993446559", addresses);
+        this.createPhysicalPerson(data);
+        Optional<PhysicalPerson> physicalPersonFound = this.physicalPersonRepository.findById(String.valueOf(2L));
+        assertThat(physicalPersonFound.isPresent()).isFalse();
+    }
 
     private PhysicalPerson createPhysicalPerson(PhysicalPersonDTO data) {
         PhysicalPerson physicalPerson = new PhysicalPerson(data);
