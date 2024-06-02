@@ -1,6 +1,6 @@
 # API Crud with rabbitMQ
 
->  API using Spring Boot, RabbitMQ, Docker, Postgres, Flyway, JUnity 5. 
+>  API using Spring Boot, RabbitMQ, Docker, Postgres, Flyway, JUnity 5, Swagger
 
 ## Required global dependencies
 - Docker
@@ -26,4 +26,9 @@ docker-compose down -v
 ## Docker Hub
 ```
 docker push wandersondavid/java-springboot_backend:tagname
+```
+
+## Docs API
+```
+http://localhost:8080/api/v1/swagger-ui/index.html
 ```
