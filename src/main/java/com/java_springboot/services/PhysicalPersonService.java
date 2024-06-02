@@ -35,13 +35,23 @@ public class PhysicalPersonService {
 
     public List<ResponsePhysicalPersonDTO> getAllPhysicalPerson() {
         return repository.findAll().stream().map(pf ->
-                new ResponsePhysicalPersonDTO(
-                        pf.getId(),
-                        pf.getName(),
-                        pf.getCpf(),
-                        pf.getPhone(),
-                        pf.getAddresses().stream().
-                                map(address ->
+                        getResponsePhysicalPersonDTO(pf))
+                .toList();
+    }
+
+    public ResponsePhysicalPersonDTO getPhysicalPersonById(String id) {
+        var person = repository.findById(id).orElseThrow();
+        return getResponsePhysicalPersonDTO(person);
+    }
+
+    private static ResponsePhysicalPersonDTO getResponsePhysicalPersonDTO(PhysicalPerson person) {
+        return new ResponsePhysicalPersonDTO(
+                person.getId(),
+                person.getName(),
+                person.getCpf(),
+                person.getPhone(),
+                person.getAddresses().stream().
+                        map(address ->
                                 new ResponseAddressDTO(
                                         address.getId(),
                                         address.getNumber(),
@@ -50,29 +60,7 @@ public class PhysicalPersonService {
                                         address.getCity(),
                                         address.getState(),
                                         address.getZip_code(),
-                                        pf.getId()))
-                                .toList()))
-                .toList();
-    }
-
-    public ResponsePhysicalPersonDTO getPhysicalPersonById(String id) {
-        var person = repository.findById(id).orElseThrow();
-        return new ResponsePhysicalPersonDTO(
-                person.getId(),
-                person.getName(),
-                person.getCpf(),
-                person.getPhone(),
-                person.getAddresses().stream().
-                        map(address ->
-                        new ResponseAddressDTO(
-                                address.getId(),
-                                address.getNumber(),
-                                address.getComplement(),
-                                address.getNeighborhood(),
-                                address.getCity(),
-                                address.getState(),
-                                address.getZip_code(),
-                                person.getId()))
+                                        person.getId()))
                         .toList());
     }
 
