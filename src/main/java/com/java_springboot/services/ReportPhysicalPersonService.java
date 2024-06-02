@@ -30,13 +30,15 @@ public class ReportPhysicalPersonService {
     }
 
     public List<ResponseReportPhysicalPersonDTO> getAllPhysicalPerson() {
-        return repository.findAll().stream().map(
+
+
+        return repository.findAllByOrderByCreatedAtDesc().stream().map(
                 report -> new ResponseReportPhysicalPersonDTO(
                         report.getId(),
                         report.getStatus(),
                         report.getUrl(),
-                        report.getUpdated_at().toString(),
-                        report.getCreated_at().toString()
+                        report.getUpdatedAt().toString(),
+                        report.getCreatedAt().toString()
                 )
         ).toList();
     }

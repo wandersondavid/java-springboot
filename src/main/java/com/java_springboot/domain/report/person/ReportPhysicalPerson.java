@@ -26,11 +26,11 @@ public class ReportPhysicalPerson {
 
     @CreatedDate
     @Column(name = "created_at", nullable = false, updatable = false)
-    private Instant created_at = Instant.now();
+    private Instant createdAt = Instant.now();
 
     @LastModifiedDate
     @Column(name = "updated_at", nullable = false)
-    private Instant updated_at = Instant.now();
+    private Instant updatedAt = Instant.now();
 
     public ReportPhysicalPerson(ReportPhysicalPersonDTO data) {
         this.status = data.status();
