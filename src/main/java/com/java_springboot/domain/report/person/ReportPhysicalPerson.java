@@ -1,5 +1,6 @@
 package com.java_springboot.domain.report.person;
 
+import com.java_springboot.domain.auditable.Auditable;
 import com.java_springboot.dtos.ReportPhysicalPersonDTO;
 import jakarta.persistence.*;
 import lombok.*;
@@ -17,7 +18,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(of="id")
-public class ReportPhysicalPerson {
+public class ReportPhysicalPerson extends Auditable {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;

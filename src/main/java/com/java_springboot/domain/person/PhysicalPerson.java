@@ -1,10 +1,12 @@
 package com.java_springboot.domain.person;
 
 import com.java_springboot.domain.address.Address;
+import com.java_springboot.domain.auditable.Auditable;
 import com.java_springboot.dtos.PhysicalPersonDTO;
 import com.java_springboot.dtos.UpadatePhysicalPersonDTO;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.util.List;
 
@@ -15,8 +17,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(of="id")
-public class PhysicalPerson {
-
+@EntityListeners(AuditingEntityListener.class)
+public class PhysicalPerson extends Auditable {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;

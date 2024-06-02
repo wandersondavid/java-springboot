@@ -1,5 +1,6 @@
 package com.java_springboot.domain.address;
 
+import com.java_springboot.domain.auditable.Auditable;
 import com.java_springboot.domain.person.PhysicalPerson;
 import com.java_springboot.dtos.AddressDTO;
 import jakarta.persistence.*;
@@ -12,7 +13,8 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(of="id")
-public class Address {
+
+public class Address extends Auditable  {
         @Id
         @GeneratedValue(strategy = GenerationType.UUID)
         private String id;
