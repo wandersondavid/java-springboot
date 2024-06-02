@@ -86,4 +86,8 @@ public class PhysicalPersonService {
         repository.save(person);
         return person;
     }
+
+    public void findByCpf(String cpf) {
+        repository.findByCpf(cpf).orElseThrow();
+    }
 }
