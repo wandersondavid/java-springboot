@@ -34,7 +34,7 @@ public class PhysicalPersonService {
     }
 
     public List<ResponsePhysicalPersonDTO> getAllPhysicalPerson() {
-        return repository.findAll().stream().map(pf ->
+        return repository.findAllByOrderByNameAsc().stream().map(pf ->
                         getResponsePhysicalPersonDTO(pf))
                 .toList();
     }
